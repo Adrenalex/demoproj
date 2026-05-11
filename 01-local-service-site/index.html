@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="description" content="Demo: a clean, mobile-friendly one-page website for a local mobile mechanic. Services, pricing, reviews, and a quote form — built to convert local customers fast." />
+  <meta property="og:title" content="NorthStar Mobile Mechanic — Local Service Website Demo" />
+  <meta property="og:description" content="Demo: a clean, mobile-friendly one-page website for a local mobile mechanic. Services, pricing, reviews, and a quote form — built to convert local customers fast." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NorthStar Mobile Mechanic</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../css/demo01.css" />
 </head>
 <body>
   <header class="site-header">
@@ -16,6 +21,7 @@
       </span>
     </a>
     <nav class="nav" aria-label="Primary navigation">
+      <a class="home-link" href="../index.html">&#8592; nottoolate.us</a>
       <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
       <a href="#reviews">Reviews</a>
@@ -24,7 +30,7 @@
   </header>
 
   <main id="top">
-    <section class="hero section">
+    <section class="hero section" style="--hero-bg: url(mechanic-van.png)">
       <div class="hero-copy">
         <p class="eyebrow">Eagan • Burnsville • Apple Valley • Bloomington</p>
         <h1>Car problems? We come to your driveway.</h1>
@@ -42,12 +48,12 @@
 
       <aside class="hero-card" aria-label="Today's availability">
         <p class="card-label">Today’s status</p>
-        <h2>3 same-day slots left</h2>
+        <h2 id="slotHeading"><span id="slotCount">3</span> same-day slots left</h2>
         <p>Most diagnostics finished in 45–60 minutes.</p>
         <div class="status-list">
-          <div><strong>Brake inspection</strong><span>from $49</span></div>
-          <div><strong>Battery install</strong><span>from $35</span></div>
-          <div><strong>No-start diagnosis</strong><span>from $89</span></div>
+          <div id="slot1" class="slot"><strong>Brake inspection</strong><span>from $49</span></div>
+          <div id="slot2" class="slot"><strong>Battery install</strong><span>from $35</span></div>
+          <div id="slot3" class="slot"><strong>No-start diagnosis</strong><span>from $89</span></div>
         </div>
       </aside>
     </section>
@@ -107,10 +113,22 @@
         <h2>Tell us what is going on.</h2>
         <p>Demo form only. In a real build this could send email, save to a database, or create a job card.</p>
       </div>
-      <form class="quote-form" id="quoteForm">
-        <label>Name<input required name="name" placeholder="Your name" /></label>
-        <label>Vehicle<input required name="vehicle" placeholder="2015 Toyota Camry" /></label>
-        <label>Problem<textarea required name="problem" placeholder="Describe the issue"></textarea></label>
+      <form class="quote-form" id="quoteForm" novalidate>
+        <div class="field-wrap">
+          <label for="f-name">Name</label>
+          <input id="f-name" name="name" placeholder="Your name" autocomplete="name" aria-describedby="err-name" aria-required="true" />
+          <p class="field-error" id="err-name">Please enter your name.</p>
+        </div>
+        <div class="field-wrap">
+          <label for="f-vehicle">Vehicle</label>
+          <input id="f-vehicle" name="vehicle" placeholder="2015 Toyota Camry" aria-describedby="err-vehicle" aria-required="true" />
+          <p class="field-error" id="err-vehicle">Please describe your vehicle.</p>
+        </div>
+        <div class="field-wrap">
+          <label for="f-problem">Problem</label>
+          <textarea id="f-problem" name="problem" placeholder="Describe the issue" aria-describedby="err-problem" aria-required="true"></textarea>
+          <p class="field-error" id="err-problem">Please describe the problem.</p>
+        </div>
         <button class="button primary" type="submit">Submit demo quote</button>
         <p class="form-message" id="formMessage" role="status"></p>
       </form>
@@ -120,6 +138,24 @@
   <footer class="site-footer">
     <p>Demo project: local service website for gig portfolio use.</p>
   </footer>
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="#services">
+      <span class="bottom-nav-icon">🔧</span>
+      Services
+    </a>
+    <a href="#pricing">
+      <span class="bottom-nav-icon">💲</span>
+      Pricing
+    </a>
+    <a href="#reviews">
+      <span class="bottom-nav-icon">★</span>
+      Reviews
+    </a>
+    <a href="#quote" class="cta">
+      <span class="bottom-nav-icon">📋</span>
+      Get Quote
+    </a>
+  </nav>
   <script src="script.js"></script>
 </body>
 </html>

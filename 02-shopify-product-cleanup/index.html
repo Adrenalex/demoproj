@@ -2,42 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="description" content="Interactive demo: watch a sketchy, trust-killing product page get cleaned up in real time. Before/after transformation showing what a proper ecommerce page looks like." />
+  <meta property="og:title" content="Product Page Cleanup Demo — ClearCart | nottoolate.us" />
+  <meta property="og:description" content="Interactive demo: watch a sketchy, trust-killing product page get cleaned up in real time. Before/after transformation showing what a proper ecommerce page looks like." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ClearCart Product Page Cleanup</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../css/demo02.css" />
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#top"><span>CC</span> ClearCart Cleanup</a>
     <nav>
-      <a href="#audit">Audit</a>
-      <a href="#fixes">Fixes</a>
-      <a href="#checkout">Checkout</a>
+      <a class="home-link" href="../index.html">&#8592; nottoolate.us</a>
     </nav>
   </header>
 
   <main id="top">
+
+    <!-- ── 1. HERO ── -->
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Ecommerce trust repair demo</p>
-        <h1>Turn a sketchy product page into a page people can trust.</h1>
-        <p>This demo shows how a confusing product page can be cleaned up with clear pricing, real policies, honest urgency, readable mobile layout, and a checkout path that does not feel like a trap.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#audit">View cleanup audit</a>
-          <a class="button ghost" href="#checkout">See rebuilt product page</a>
-        </div>
+        <p class="eyebrow">Interactive demo &mdash; ecommerce trust repair</p>
+        <h1 id="heroHeadline">This is a bad product page.</h1>
+        <p class="hero-sub" id="heroSub">Fake urgency. Missing policies. Screaming buy button. Scroll down to see it &mdash; then hit the button to fix it.</p>
       </div>
       <aside class="score-card">
-        <p>Trust score</p>
+        <p class="score-label">Trust score</p>
         <div class="score"><span id="scoreValue">42</span><small>/100</small></div>
-        <button id="improveBtn" class="button primary" type="button">Run cleanup</button>
+        <p class="score-cta" id="scoreCta">&#8595; Try it</p>
+        <div class="toggle-row">
+          <button id="improveBtn" class="button primary" type="button">&#10003; Run cleanup</button>
+          <button id="resetBtn"   class="button ghost"   type="button">Reset</button>
+        </div>
+        <p class="toggle-state" id="toggleState">Showing: before</p>
+        <a class="share-link" id="shareLink" href="?state=after" target="_blank">&#8599; Share cleaned version</a>
       </aside>
     </section>
 
+    <!-- ── 2. PRODUCT (before / after swap) ── -->
+    <section id="checkout" class="section product-compare">
+
+      <div id="productBefore" class="product-shell product-before">
+        <div class="product-gallery" aria-label="Product images">
+          <div class="main-product-image before-img"><img src="shaver.png" alt="Product" /><span class="before-img-label">LIMITED DEAL</span></div>
+          <div class="thumb-row"><span></span><span></span><span></span></div>
+        </div>
+        <div class="product-info">
+          <p class="before-badge">&#9889; ONLY 3 LEFT &mdash; SALE ENDS IN 00:47 &#9889;</p>
+          <h2 class="before-title">OrbitClean Pro Max Elite 2-in-1 Grooming Tool (NEW 2024 VERSION)</h2>
+          <p class="rating before-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <strong>10,482 reviews</strong></p>
+          <div class="price-row before-price">
+            <strong>$39.00</strong>
+            <span>Was $199.00</span>
+            <span class="fake-badge">80% OFF TODAY ONLY</span>
+          </div>
+          <p class="product-copy before-copy">Premium quality! Best seller! Order now before it runs out! Ships worldwide! Satisfaction guaranteed or whatever!</p>
+          <button class="buy-button before-buy" type="button">BUY NOW &mdash; CLICK HERE</button>
+          <p class="before-fine">*Price may vary. Discount applied at checkout maybe. Returns subject to policy. See FAQ page link hidden in footer.</p>
+        </div>
+      </div>
+
+      <div id="productAfter" class="product-shell product-after">
+        <div class="product-gallery" aria-label="Product images">
+          <div class="main-product-image after-img"><img src="shaver.png" alt="OrbitClean 2-in-1 Waterproof Shaver" /></div>
+          <div class="thumb-row"><span></span><span></span><span></span></div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Clean rebuilt layout</p>
+          <h2>OrbitClean 2-in-1 Waterproof Shaver</h2>
+          <p class="rating">&#9733;&#9733;&#9733;&#9733;&#9733; <strong>4.7</strong> from 318 verified reviews</p>
+          <div class="price-row"><strong>$39.00</strong><span>Was $59.00</span></div>
+          <p class="product-copy">A compact waterproof grooming tool with a clear spec list, visible return policy, and no confusing external checkout jumps.</p>
+          <div class="choice-card">
+            <p class="choice-label">Choose color</p>
+            <div class="swatches" role="list" aria-label="Colors">
+              <button class="active" type="button" aria-label="Charcoal"></button>
+              <button type="button" aria-label="Silver"></button>
+              <button type="button" aria-label="Blue"></button>
+            </div>
+          </div>
+          <button class="buy-button after-buy" type="button">Add to cart &mdash; $39.00</button>
+          <div class="policy-strip">
+            <span>Ships in 1&ndash;2 business days</span>
+            <span>30-day returns</span>
+            <span>Email support</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── 3. AUDIT (what was wrong) ── -->
     <section id="audit" class="audit section">
       <div class="section-heading">
-        <p class="eyebrow">Before cleanup</p>
-        <h2>Common page problems that kill buyer confidence.</h2>
+        <p class="eyebrow">What was wrong</p>
+        <h2>Problems that killed buyer confidence.</h2>
       </div>
       <div class="problem-grid">
         <article>
@@ -63,51 +124,23 @@
       </div>
     </section>
 
-    <section id="checkout" class="product-shell section">
-      <div class="product-gallery" aria-label="Product images">
-        <div class="main-product-image">Product Image</div>
-        <div class="thumb-row"><span></span><span></span><span></span></div>
-      </div>
-      <div class="product-info">
-        <p class="eyebrow">Clean rebuilt layout</p>
-        <h2>OrbitClean 2-in-1 Waterproof Shaver</h2>
-        <p class="rating">★★★★★ <strong>4.7</strong> from 318 verified reviews</p>
-        <div class="price-row"><strong>$39.00</strong><span>Was $59.00</span></div>
-        <p class="product-copy">A compact waterproof grooming tool with a clear spec list, visible return policy, and no confusing external checkout jumps.</p>
-
-        <div class="choice-card">
-          <p class="choice-label">Choose color</p>
-          <div class="swatches" role="list" aria-label="Colors">
-            <button class="active" type="button" aria-label="Charcoal"></button>
-            <button type="button" aria-label="Silver"></button>
-            <button type="button" aria-label="Blue"></button>
-          </div>
-        </div>
-
-        <button class="buy-button" type="button">Add to cart — $39.00</button>
-        <div class="policy-strip">
-          <span>Ships in 1–2 business days</span>
-          <span>30-day returns</span>
-          <span>Email support</span>
-        </div>
-      </div>
-    </section>
-
+    <!-- ── 4. FIXES (pitch — shown after cleanup) ── -->
     <section id="fixes" class="section fixes-section">
       <div class="section-heading">
-        <p class="eyebrow">What I would sell</p>
+        <p class="eyebrow">What I did &mdash; and what I sell</p>
         <h2>Product page cleanup package.</h2>
       </div>
       <div class="fix-list">
-        <div><strong>1</strong><span>Rewrite product title, price, CTA, and above-the-fold copy.</span></div>
-        <div><strong>2</strong><span>Add shipping, return, contact, and warranty blocks where buyers expect them.</span></div>
-        <div><strong>3</strong><span>Remove scam-looking urgency, fake badges, clutter, and offsite checkout confusion.</span></div>
-        <div><strong>4</strong><span>Make the mobile version readable, tappable, and focused on one clear action.</span></div>
+        <div><strong>1</strong><span>Rewrote product title, price, CTA, and above-the-fold copy.</span></div>
+        <div><strong>2</strong><span>Added shipping, return, contact, and warranty blocks where buyers expect them.</span></div>
+        <div><strong>3</strong><span>Removed scam-looking urgency, fake badges, clutter, and offsite checkout confusion.</span></div>
+        <div><strong>4</strong><span>Made the mobile version readable, tappable, and focused on one clear action.</span></div>
       </div>
     </section>
+
   </main>
 
-  <footer class="footer">Demo project: ecommerce/product page cleanup for gig portfolio use.</footer>
+  <footer class="footer">Demo project: ecommerce/product page cleanup &mdash; nottoolate.us portfolio.</footer>
   <script src="script.js"></script>
 </body>
 </html>

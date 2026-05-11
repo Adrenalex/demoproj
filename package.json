@@ -1,0 +1,24 @@
+{
+  "name": "demoproj",
+  "version": "1.0.0",
+  "description": "Three portfolio-ready static demos for selling practical web work to small businesses.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite --host 127.0.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adrenalex/demoproj.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adrenalex/demoproj/issues"
+  },
+  "homepage": "https://github.com/Adrenalex/demoproj#readme",
+  "devDependencies": {
+    "vite": "^8.0.12"
+  }
+}

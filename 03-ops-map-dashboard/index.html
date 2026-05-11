@@ -2,31 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="description" content="Demo: a live map tool for delivery operations. Capture bad addresses, gate codes, hazards, and route notes — pinned, tagged, and searchable across your whole team." />
+  <meta property="og:title" content="Route Intelligence Dashboard Demo | nottoolate.us" />
+  <meta property="og:description" content="Demo: a live map tool for delivery operations. Capture bad addresses, gate codes, hazards, and route notes — pinned, tagged, and searchable across your whole team." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FieldOps Map Dashboard</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Route Intelligence Dashboard &mdash; nottoolate.us</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="../css/demo03.css" />
 </head>
 <body>
   <header class="app-header">
     <div>
-      <p class="eyebrow">Internal tool demo</p>
-      <h1>FieldOps Map Dashboard</h1>
+      <p class="eyebrow">Driver intelligence tool &mdash; demo</p>
+      <h1>Route Intelligence Dashboard</h1>
     </div>
-    <button class="sync-button" id="syncButton" type="button">Sync demo data</button>
+    <div class="header-right"><a class="home-link" href="../index.html">Back to nottoolate.us</a><button class="sync-button" id="syncButton" type="button">Sync demo data</button></div>
   </header>
 
   <main class="layout">
     <aside class="control-panel" aria-label="Control panel">
       <section class="panel-card">
         <h2>Quick add</h2>
+        <p class="quick-hint">Select a type then click the map to drop a pin:</p>
         <div class="button-grid">
-          <button data-type="Stop sign">Stop sign</button>
-          <button data-type="Traffic light">Traffic light</button>
-          <button data-type="Construction">Construction</button>
-          <button data-type="School zone">School zone</button>
-          <button data-type="Delivery note">Delivery note</button>
-          <button data-type="Bad address">Bad address</button>
+          <button data-type="Stop sign"     data-css="stop"         data-label="S">Stop sign</button>
+          <button data-type="Traffic light" data-css="signal"       data-label="L">Traffic light</button>
+          <button data-type="Construction"  data-css="construction"  data-label="C">Construction</button>
+          <button data-type="School zone"   data-css="school"        data-label="Z">School zone</button>
+          <button data-type="Delivery note" data-css="delivery"      data-label="D">Delivery note</button>
+          <button data-type="Bad address"   data-css="bad-addr"      data-label="!">Bad address</button>
         </div>
+        <p class="pending-hint" id="pendingHint">Click a button above, then click the map</p>
       </section>
 
       <section class="panel-card">
@@ -34,16 +42,16 @@
         <form id="noteForm" class="note-form">
           <label>Type
             <select name="type">
-              <option>Stop sign</option>
-              <option>Traffic light</option>
-              <option>Construction</option>
-              <option>School zone</option>
-              <option>Delivery note</option>
-              <option>Bad address</option>
+              <option value="Stop sign"     data-css="stop"         data-label="S">Stop sign</option>
+              <option value="Traffic light" data-css="signal"       data-label="L">Traffic light</option>
+              <option value="Construction"  data-css="construction"  data-label="C">Construction</option>
+              <option value="School zone"   data-css="school"        data-label="Z">School zone</option>
+              <option value="Delivery note" data-css="delivery"      data-label="D">Delivery note</option>
+              <option value="Bad address"   data-css="bad-addr"      data-label="!">Bad address</option>
             </select>
           </label>
           <label>Location
-            <input name="location" placeholder="44.8241, -93.2074" required />
+            <input name="location" id="locationInput" placeholder="Click map to fill, or type coords" required />
           </label>
           <label>Note
             <textarea name="note" placeholder="Short note for review"></textarea>
@@ -55,23 +63,23 @@
       <section class="panel-card gps-card">
         <h2>GPS status</h2>
         <div class="gps-row"><span class="pulse"></span><strong>Recording live</strong></div>
-        <p>Accuracy: 14 ft • Fix age: 3 sec • Network: OK</p>
+        <p>Accuracy: 14 ft &bull; Fix age: 3 sec &bull; Network: OK</p>
       </section>
     </aside>
 
     <section class="workspace">
       <div class="stats-grid" aria-label="Marker counts">
-        <article><span>Stops</span><strong id="stopCount">8</strong></article>
-        <article><span>Signals</span><strong id="signalCount">5</strong></article>
-        <article><span>Construction</span><strong id="constructionCount">2</strong></article>
-        <article><span>Needs review</span><strong id="reviewCount">3</strong></article>
+        <article aria-label="Stop signs logged"><span>Stops</span><strong id="stopCount">8</strong></article>
+        <article aria-label="Traffic signals logged"><span>Signals</span><strong id="signalCount">5</strong></article>
+        <article aria-label="Construction zones logged"><span>Construction</span><strong id="constructionCount">2</strong></article>
+        <article aria-label="Stops needing review"><span>Needs review</span><strong id="reviewCount">3</strong></article>
       </div>
 
-      <section class="map-card" aria-label="Map preview">
+      <section class="map-card" aria-label="Map">
         <div class="map-toolbar">
           <div>
             <p class="eyebrow">Map preview</p>
-            <h2>Today’s route intelligence</h2>
+            <h2>Today's route &mdash; live intelligence</h2>
           </div>
           <div class="filter-row">
             <button class="active" data-filter="all">All</button>
@@ -80,10 +88,7 @@
             <button data-filter="review">Review</button>
           </div>
         </div>
-
-        <div class="map-image-wrap" id="mockMap">
-          <img class="map-image" src="gpsmap.png" alt="Map preview with route and saved field notes" />
-        </div>
+        <div id="map" role="application" aria-label="Interactive route intelligence map"></div>
       </section>
 
       <section class="table-card">
@@ -107,9 +112,28 @@
           </table>
         </div>
       </section>
+
+      <section class="pitch-section">
+        <div class="pitch-inner">
+          <div class="pitch-copy">
+            <p class="eyebrow">What this sells</p>
+            <h2>Your drivers know things your routing software doesn&rsquo;t.</h2>
+            <p>Bad addresses. Gate codes. Slow intersections. Aggressive dogs. Right now that knowledge lives in a group chat and disappears the next day.</p>
+            <p>This tool captures it &mdash; pinned to a map, tagged by type, searchable, and shared across your whole operation. Every driver&rsquo;s hard-won route knowledge becomes a permanent asset instead of lost tribal knowledge.</p>
+            <p class="pitch-who">Built for small DSP operators, last-mile contractors, and delivery teams running without enterprise tooling.</p>
+          </div>
+          <div class="pitch-list">
+            <div><strong>1</strong><span>Drop pins on stops that need attention &mdash; bad address, gate code, access note, hazard.</span></div>
+            <div><strong>2</strong><span>Tag by type so drivers can filter to what matters on their specific route.</span></div>
+            <div><strong>3</strong><span>Review queue surfaces flagged stops before dispatch so problems are caught, not discovered mid-route.</span></div>
+            <div><strong>4</strong><span>Runs in any browser, no app install, no subscription. One-time build for your operation.</span></div>
+          </div>
+        </div>
+      </section>
     </section>
   </main>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
