@@ -3,35 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Not Too Late | Simple Websites & Web Fixes</title>
+  <title>Not Too Late | Website Cleanup & Small Web Tools</title>
 
   <style>
     :root {
-      --bg: #0f172a;
-      --panel: #162033;
-      --panel-soft: #1b2940;
-      --text: #f8fafc;
-      --muted: #cbd5e1;
-      --soft: #94a3b8;
-      --accent: #38bdf8;
-      --accent-2: #22c55e;
-      --line: rgba(255, 255, 255, 0.12);
+      --cream: #fff7ed;
+      --paper: #fffaf2;
+      --ink: #231f20;
+      --muted: #6f6258;
+      --line: #ead8c4;
+      --orange: #f97316;
+      --orange-dark: #c2410c;
+      --red: #ef4444;
+      --yellow: #facc15;
+      --green: #16a34a;
+      --brown: #3b2417;
       --white: #ffffff;
-      --dark: #08111f;
+      --shadow: 0 22px 60px rgba(92, 53, 25, 0.16);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 34%),
-        radial-gradient(circle at top right, rgba(34, 197, 94, 0.10), transparent 34%),
-        var(--bg);
-      color: var(--text);
+        radial-gradient(circle at top left, rgba(249, 115, 22, 0.22), transparent 32%),
+        radial-gradient(circle at top right, rgba(250, 204, 21, 0.24), transparent 28%),
+        linear-gradient(180deg, #fff7ed 0%, #fff1df 45%, #fffaf2 100%);
+      color: var(--ink);
       line-height: 1.6;
     }
 
@@ -40,92 +46,139 @@
     }
 
     .page {
-      width: min(1120px, calc(100% - 32px));
+      width: min(1140px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 28px 0 56px;
+      padding: 22px 0 50px;
     }
 
-    .nav {
+    .topbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 18px;
-      margin-bottom: 54px;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 46px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      font-size: 1.2rem;
+      font-weight: 950;
+      letter-spacing: -0.04em;
+      font-size: 1.25rem;
     }
 
-    .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    .brand-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
       display: grid;
       place-items: center;
-      color: var(--dark);
+      background: var(--ink);
+      color: var(--yellow);
+      box-shadow: 0 10px 24px rgba(35, 31, 32, 0.18);
+      font-weight: 950;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 14px;
       font-weight: 900;
     }
 
-    .nav-link {
-      color: var(--muted);
+    .nav a {
       text-decoration: none;
-      font-weight: 800;
+      color: var(--brown);
+      opacity: 0.82;
+    }
+
+    .nav .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      opacity: 1;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 34px;
-      align-items: center;
-      margin-bottom: 34px;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 30px;
+      align-items: stretch;
+      margin-bottom: 26px;
     }
 
-    .eyebrow {
+    .hero-main {
+      background: rgba(255, 250, 242, 0.76);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: clamp(28px, 5vw, 54px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -80px;
+      bottom: -90px;
+      border-radius: 50%;
+      background: rgba(249, 115, 22, 0.18);
+    }
+
+    .status {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
+      gap: 9px;
+      padding: 9px 13px;
       border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.04);
-      font-weight: 800;
-      margin-bottom: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--orange-dark);
+      font-weight: 950;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 25px rgba(92, 53, 25, 0.08);
     }
 
-    .dot {
+    .status-dot {
       width: 10px;
       height: 10px;
-      border-radius: 999px;
-      background: var(--accent-2);
-      box-shadow: 0 0 18px rgba(34, 197, 94, 0.85);
+      border-radius: 99px;
+      background: var(--red);
+      box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.12);
     }
 
     h1 {
-      font-size: clamp(3rem, 7vw, 6.8rem);
-      line-height: 0.92;
-      letter-spacing: -0.08em;
-      margin: 0 0 24px;
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(3.3rem, 8.2vw, 7.6rem);
+      line-height: 0.88;
+      letter-spacing: -0.095em;
+      color: var(--ink);
     }
 
-    .hero-text {
-      font-size: clamp(1.1rem, 2vw, 1.35rem);
+    .hero-main h1 span {
+      color: var(--orange-dark);
+    }
+
+    .hero-copy {
+      max-width: 710px;
+      margin: 24px 0 0;
+      font-size: clamp(1.12rem, 2vw, 1.36rem);
       color: var(--muted);
-      max-width: 700px;
-      margin: 0 0 28px;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 12px;
+      margin-top: 28px;
+      position: relative;
+      z-index: 1;
     }
 
     .button {
@@ -133,201 +186,275 @@
       align-items: center;
       justify-content: center;
       min-height: 52px;
-      padding: 14px 20px;
+      padding: 14px 19px;
       border-radius: 999px;
       text-decoration: none;
-      font-weight: 900;
-      border: 1px solid transparent;
+      font-weight: 950;
+      border: 2px solid transparent;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
     }
 
     .button.primary {
-      background: var(--white);
-      color: var(--dark);
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: 0 14px 30px rgba(35, 31, 32, 0.18);
     }
 
     .button.secondary {
+      background: var(--white);
+      color: var(--ink);
       border-color: var(--line);
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.04);
     }
 
-    .hero-card {
-      border: 1px solid var(--line);
-      background: rgba(22, 32, 51, 0.86);
-      border-radius: 30px;
-      padding: 26px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.24);
+    .rescue-card {
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 34px;
+      padding: clamp(24px, 4vw, 34px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero-card h2 {
+    .rescue-card::before {
+      content: "";
+      position: absolute;
+      inset: -60px -80px auto auto;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: rgba(250, 204, 21, 0.18);
+    }
+
+    .rescue-card h2 {
       margin: 0 0 12px;
-      font-size: 1.5rem;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 0.96;
+      letter-spacing: -0.065em;
+    }
+
+    .rescue-card p {
+      color: #f7dcc4;
+      margin: 0 0 22px;
+      font-size: 1.05rem;
+    }
+
+    .rescue-list {
+      display: grid;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .rescue-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .rescue-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: var(--yellow);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      font-weight: 950;
+    }
+
+    .rescue-item strong {
+      display: block;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .rescue-item span {
+      color: #f7dcc4;
+    }
+
+    .strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 26px 0;
+    }
+
+    .mini {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 14px 36px rgba(92, 53, 25, 0.08);
+    }
+
+    .mini strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
       letter-spacing: -0.03em;
     }
 
-    .hero-card p {
+    .mini span {
       color: var(--muted);
-      margin: 0 0 18px;
-    }
-
-    .checklist {
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .check {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      color: var(--muted);
-    }
-
-    .check strong {
-      color: var(--text);
-    }
-
-    .check span:first-child {
-      color: var(--accent-2);
-      font-weight: 900;
     }
 
     .section {
-      margin-top: 34px;
+      margin-top: 26px;
+      padding: clamp(24px, 4vw, 34px);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.72);
       border: 1px solid var(--line);
-      background: rgba(22, 32, 51, 0.76);
-      border-radius: 30px;
-      padding: 26px;
+      box-shadow: 0 18px 44px rgba(92, 53, 25, 0.09);
     }
 
-    .section-header {
+    .section-head {
       display: flex;
-      justify-content: space-between;
-      gap: 20px;
       align-items: end;
+      justify-content: space-between;
+      gap: 22px;
       margin-bottom: 22px;
     }
 
     .section h2 {
       margin: 0;
-      font-size: clamp(1.8rem, 3vw, 2.7rem);
-      line-height: 1;
-      letter-spacing: -0.06em;
+      font-size: clamp(2.2rem, 4.5vw, 4rem);
+      line-height: 0.9;
+      letter-spacing: -0.08em;
     }
 
-    .section-header p {
-      color: var(--muted);
+    .section-head p {
       max-width: 520px;
       margin: 0;
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .service,
-    .demo-card {
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.035);
-      border-radius: 24px;
-      padding: 22px;
-    }
-
-    .service h3,
-    .demo-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.25rem;
-      letter-spacing: -0.03em;
-    }
-
-    .service p,
-    .demo-card p {
-      margin: 0;
       color: var(--muted);
+      font-size: 1.08rem;
     }
 
+    .fix-grid,
     .demo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
 
+    .fix,
     .demo-card {
-      display: flex;
-      flex-direction: column;
-      min-height: 270px;
-    }
-
-    .number {
-      width: 48px;
-      height: 48px;
-      border-radius: 15px;
-      background: var(--accent);
-      color: var(--dark);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      margin-bottom: 18px;
-    }
-
-    .demo-card .button {
-      margin-top: auto;
-      width: fit-content;
-      background: var(--white);
-      color: var(--dark);
-      min-height: 48px;
-      padding-inline: 18px;
-    }
-
-    .pitch {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .pitch-box {
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(34, 197, 94, 0.12));
+      background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 26px;
       padding: 24px;
     }
 
-    .pitch-box p {
+    .fix-tag {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #ffedd5;
+      color: var(--orange-dark);
+      font-weight: 950;
+      font-size: 0.86rem;
+    }
+
+    .fix h3,
+    .demo-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .fix p,
+    .demo-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .demo-card {
+      min-height: 292px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--orange);
+      color: var(--white);
+      font-weight: 950;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 24px rgba(249, 115, 22, 0.22);
+    }
+
+    .demo-card .button {
+      width: fit-content;
+      min-height: 48px;
+      margin-top: auto;
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .banner {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+      align-items: center;
+      background:
+        linear-gradient(135deg, rgba(249, 115, 22, 0.16), rgba(250, 204, 21, 0.24)),
+        var(--paper);
+    }
+
+    .banner p {
       margin: 0;
       color: var(--muted);
       font-size: 1.1rem;
     }
 
     .footer {
-      color: var(--soft);
-      margin-top: 30px;
       text-align: center;
-      font-weight: 700;
+      color: var(--muted);
+      font-weight: 900;
+      margin-top: 30px;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
+      .topbar {
+        align-items: flex-start;
+      }
+
       .nav {
-        margin-bottom: 36px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
       }
 
       .hero,
-      .pitch {
+      .banner {
         grid-template-columns: 1fr;
       }
 
-      .services,
+      .strip,
+      .fix-grid,
       .demo-grid {
         grid-template-columns: 1fr;
       }
 
-      .section-header {
+      .section-head {
         display: block;
       }
 
-      .section-header p {
+      .section-head p {
         margin-top: 12px;
       }
 
@@ -339,150 +466,214 @@
         margin-top: 22px;
       }
     }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(100% - 22px, 1140px);
+        padding-top: 14px;
+      }
+
+      .topbar {
+        display: grid;
+        gap: 14px;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .hero-main,
+      .rescue-card,
+      .section {
+        border-radius: 24px;
+      }
+
+      h1 {
+        font-size: clamp(3.1rem, 18vw, 5.1rem);
+      }
+    }
   </style>
 </head>
 
 <body>
   <div class="page">
-    <nav class="nav">
-      <div class="brand">
-        <div class="brand-mark">NTL</div>
+    <header class="topbar">
+      <a class="brand" href="#">
+        <span class="brand-badge">NTL</span>
         <span>Not Too Late</span>
-      </div>
+      </a>
 
-      <a class="nav-link" href="#demos">View demos</a>
-    </nav>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#fixes">What I fix</a>
+        <a href="#demos">Demos</a>
+        <a class="pill" href="#demos">See examples</a>
+      </nav>
+    </header>
 
     <main>
       <section class="hero">
-        <div>
-          <div class="eyebrow">
-            <span class="dot"></span>
-            Simple websites, cleanups, and useful web tools
+        <div class="hero-main">
+          <div class="status">
+            <span class="status-dot"></span>
+            Website rescue without the tech maze
           </div>
 
-          <h1>It’s not too late to fix your website.</h1>
+          <h1>It’s not too late to make your website work better.</h1>
 
-          <p class="hero-text">
-            I build clear, practical websites and small web tools for people who need
-            something that works, looks clean, and is easy to use.
+          <p class="hero-copy">
+            I build clean websites, fix confusing pages, and make small web tools for people
+            who need something useful, readable, and easy to trust.
           </p>
 
           <div class="actions">
-            <a class="button primary" href="#demos">See the demos</a>
-            <a class="button secondary" href="#what-i-build">What I build</a>
+            <a class="button primary" href="#demos">View demo projects</a>
+            <a class="button secondary" href="#fixes">What can be fixed?</a>
           </div>
         </div>
 
-        <aside class="hero-card">
-          <h2>Need something cleaned up fast?</h2>
+        <aside class="rescue-card">
+          <h2>Your site should not scare people away.</h2>
           <p>
-            A confusing website can cost people trust before they ever call, book, or buy.
-            The fix does not have to be complicated.
+            If a page looks messy, confusing, outdated, or hard to use on a phone,
+            people leave before they understand what you offer.
           </p>
 
-          <div class="checklist">
-            <div class="check">
-              <span>✓</span>
-              <div><strong>Clear pages</strong><br />Easy to read, easy to click, easy to understand.</div>
+          <div class="rescue-list">
+            <div class="rescue-item">
+              <div class="rescue-icon">1</div>
+              <div>
+                <strong>Make it clear</strong>
+                <span>Customers should know what you do within seconds.</span>
+              </div>
             </div>
 
-            <div class="check">
-              <span>✓</span>
-              <div><strong>Mobile-friendly layouts</strong><br />Built for people using phones first.</div>
+            <div class="rescue-item">
+              <div class="rescue-icon">2</div>
+              <div>
+                <strong>Make it usable</strong>
+                <span>Buttons, forms, text, and mobile layouts should feel obvious.</span>
+              </div>
             </div>
 
-            <div class="check">
-              <span>✓</span>
-              <div><strong>Small custom tools</strong><br />Forms, dashboards, maps, upload pages, and control panels.</div>
+            <div class="rescue-item">
+              <div class="rescue-icon">3</div>
+              <div>
+                <strong>Make it trustworthy</strong>
+                <span>Clean pages help people feel safer calling, booking, or buying.</span>
+              </div>
             </div>
           </div>
         </aside>
       </section>
 
-      <section class="section" id="what-i-build">
-        <div class="section-header">
-          <h2>What I build</h2>
+      <section class="strip" aria-label="Quick services">
+        <div class="mini">
+          <strong>Website cleanup</strong>
+          <span>Fix messy pages, weak layouts, and confusing customer flow.</span>
+        </div>
+
+        <div class="mini">
+          <strong>Small business pages</strong>
+          <span>Simple websites for services, quotes, booking, and contact.</span>
+        </div>
+
+        <div class="mini">
+          <strong>Useful web tools</strong>
+          <span>Forms, dashboards, map pages, upload tools, and control panels.</span>
+        </div>
+      </section>
+
+      <section class="section" id="fixes">
+        <div class="section-head">
+          <h2>What I fix</h2>
           <p>
-            Practical web work for small businesses, shops, and people who need a simple solution.
+            The goal is not to make things fancy. The goal is to make them easier
+            to read, easier to use, and easier to trust.
           </p>
         </div>
 
-        <div class="services">
-          <article class="service">
-            <h3>Business websites</h3>
-            <p>Clean one-page sites with services, pricing, reviews, and a clear way to contact you.</p>
+        <div class="fix-grid">
+          <article class="fix">
+            <span class="fix-tag">Clean up</span>
+            <h3>Pages that feel confusing</h3>
+            <p>
+              Better layout, clearer wording, stronger buttons, and less clutter.
+            </p>
           </article>
 
-          <article class="service">
-            <h3>Page cleanups</h3>
-            <p>Fix messy layouts, confusing text, weak product pages, and pages that feel hard to trust.</p>
+          <article class="fix">
+            <span class="fix-tag">Mobile first</span>
+            <h3>Sites that are rough on phones</h3>
+            <p>
+              Bigger text, easier taps, cleaner spacing, and sections that stack properly.
+            </p>
           </article>
 
-          <article class="service">
-            <h3>Web tools</h3>
-            <p>Simple dashboards, forms, map pages, upload tools, and control panels for daily work.</p>
+          <article class="fix">
+            <span class="fix-tag">Simple tools</span>
+            <h3>Work that needs a better screen</h3>
+            <p>
+              Small dashboards, upload pages, map views, notes, forms, and internal tools.
+            </p>
           </article>
         </div>
       </section>
 
       <section class="section" id="demos">
-        <div class="section-header">
+        <div class="section-head">
           <h2>Demo projects</h2>
           <p>
-            These are small examples showing the kind of practical work I can build.
+            Three quick examples of the kind of work I can build or clean up.
           </p>
         </div>
 
         <div class="demo-grid">
           <article class="demo-card">
-            <div class="number">1</div>
+            <div class="demo-number">1</div>
             <h3>Local Service Website</h3>
             <p>
-              A clean one-page site for a local service business with services, pricing,
-              reviews, and a quote form.
+              A clean one-page site for a local service business with services,
+              pricing, reviews, and a quote request.
             </p>
             <a class="button" href="01-local-service-site/index.html">Open demo</a>
           </article>
 
           <article class="demo-card">
-            <div class="number">2</div>
+            <div class="demo-number">2</div>
             <h3>Product Page Refresh</h3>
             <p>
-              A cleaner product page focused on trust, clear details, and helping customers
-              feel comfortable before they buy.
+              A cleaner product page focused on trust, clear details, and making
+              buyers more comfortable before they purchase.
             </p>
             <a class="button" href="02-shopify-product-cleanup/index.html">Open demo</a>
           </article>
 
           <article class="demo-card">
-            <div class="number">3</div>
+            <div class="demo-number">3</div>
             <h3>Simple Map Dashboard</h3>
             <p>
-              A lightweight dashboard for tracking locations, notes, quick updates, and field work.
+              A lightweight dashboard for tracking locations, notes, quick updates,
+              and field work without messy menus.
             </p>
             <a class="button" href="03-ops-map-dashboard/index.html">Open demo</a>
           </article>
         </div>
       </section>
 
-      <section class="section pitch">
+      <section class="section banner">
         <div>
-          <h2>Friendly urgency. No pressure. No tech maze.</h2>
+          <h2>Not perfect yet? Good. That means it can still be fixed.</h2>
         </div>
 
-        <div class="pitch-box">
-          <p>
-            The goal is simple: make your website easier to read, easier to use,
-            and easier to trust. Whether you need a fresh page, a cleanup, or a small tool
-            that saves time, it is probably not too late to make it better.
-          </p>
-        </div>
+        <p>
+          Not Too Late is built around practical fixes: clearer pages, better mobile layouts,
+          cleaner product flow, and small tools that help people get work done.
+        </p>
       </section>
     </main>
 
     <footer class="footer">
-      nottoolate.us — simple websites and web fixes
+      nottoolate.us — website cleanup, simple pages, and small web tools
     </footer>
   </div>
 </body>
