@@ -1,115 +1,489 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FieldOps Map Dashboard</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Not Too Late | Simple Websites & Web Fixes</title>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #162033;
+      --panel-soft: #1b2940;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --soft: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --line: rgba(255, 255, 255, 0.12);
+      --white: #ffffff;
+      --dark: #08111f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.10), transparent 34%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 54px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      font-size: 1.2rem;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      color: var(--dark);
+      font-weight: 900;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      align-items: center;
+      margin-bottom: 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.04);
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent-2);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.85);
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 6.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
+      margin: 0 0 24px;
+    }
+
+    .hero-text {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 0 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      border: 1px solid transparent;
+    }
+
+    .button.primary {
+      background: var(--white);
+      color: var(--dark);
+    }
+
+    .button.secondary {
+      border-color: var(--line);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .hero-card {
+      border: 1px solid var(--line);
+      background: rgba(22, 32, 51, 0.86);
+      border-radius: 30px;
+      padding: 26px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.24);
+    }
+
+    .hero-card h2 {
+      margin: 0 0 12px;
+      font-size: 1.5rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-card p {
+      color: var(--muted);
+      margin: 0 0 18px;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .check {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+
+    .check strong {
+      color: var(--text);
+    }
+
+    .check span:first-child {
+      color: var(--accent-2);
+      font-weight: 900;
+    }
+
+    .section {
+      margin-top: 34px;
+      border: 1px solid var(--line);
+      background: rgba(22, 32, 51, 0.76);
+      border-radius: 30px;
+      padding: 26px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .service,
+    .demo-card {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.035);
+      border-radius: 24px;
+      padding: 22px;
+    }
+
+    .service h3,
+    .demo-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .service p,
+    .demo-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .demo-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 270px;
+    }
+
+    .number {
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      background: var(--accent);
+      color: var(--dark);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .demo-card .button {
+      margin-top: auto;
+      width: fit-content;
+      background: var(--white);
+      color: var(--dark);
+      min-height: 48px;
+      padding-inline: 18px;
+    }
+
+    .pitch {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .pitch-box {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(34, 197, 94, 0.12));
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 24px;
+    }
+
+    .pitch-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .footer {
+      color: var(--soft);
+      margin-top: 30px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        margin-bottom: 36px;
+      }
+
+      .hero,
+      .pitch {
+        grid-template-columns: 1fr;
+      }
+
+      .services,
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        display: block;
+      }
+
+      .section-header p {
+        margin-top: 12px;
+      }
+
+      .demo-card {
+        min-height: auto;
+      }
+
+      .demo-card .button {
+        margin-top: 22px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <header class="app-header">
-    <div>
-      <p class="eyebrow">Internal tool demo</p>
-      <h1>FieldOps Map Dashboard</h1>
-    </div>
-    <button class="sync-button" id="syncButton" type="button">Sync demo data</button>
-  </header>
-
-  <main class="layout">
-    <aside class="control-panel" aria-label="Control panel">
-      <section class="panel-card">
-        <h2>Quick add</h2>
-        <div class="button-grid">
-          <button data-type="Stop sign">Stop sign</button>
-          <button data-type="Traffic light">Traffic light</button>
-          <button data-type="Construction">Construction</button>
-          <button data-type="School zone">School zone</button>
-          <button data-type="Delivery note">Delivery note</button>
-          <button data-type="Bad address">Bad address</button>
-        </div>
-      </section>
-
-      <section class="panel-card">
-        <h2>New field note</h2>
-        <form id="noteForm" class="note-form">
-          <label>Type
-            <select name="type">
-              <option>Stop sign</option>
-              <option>Traffic light</option>
-              <option>Construction</option>
-              <option>School zone</option>
-              <option>Delivery note</option>
-              <option>Bad address</option>
-            </select>
-          </label>
-          <label>Location
-            <input name="location" placeholder="44.8241, -93.2074" required />
-          </label>
-          <label>Note
-            <textarea name="note" placeholder="Short note for review"></textarea>
-          </label>
-          <button class="primary" type="submit">Save note</button>
-        </form>
-      </section>
-
-      <section class="panel-card gps-card">
-        <h2>GPS status</h2>
-        <div class="gps-row"><span class="pulse"></span><strong>Recording live</strong></div>
-        <p>Accuracy: 14 ft • Fix age: 3 sec • Network: OK</p>
-      </section>
-    </aside>
-
-    <section class="workspace">
-      <div class="stats-grid" aria-label="Marker counts">
-        <article><span>Stops</span><strong id="stopCount">8</strong></article>
-        <article><span>Signals</span><strong id="signalCount">5</strong></article>
-        <article><span>Construction</span><strong id="constructionCount">2</strong></article>
-        <article><span>Needs review</span><strong id="reviewCount">3</strong></article>
+  <div class="page">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-mark">NTL</div>
+        <span>Not Too Late</span>
       </div>
 
-      <section class="map-card" aria-label="Map preview">
-        <div class="map-toolbar">
-          <div>
-            <p class="eyebrow">Map preview</p>
-            <h2>Today’s route intelligence</h2>
+      <a class="nav-link" href="#demos">View demos</a>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">
+            <span class="dot"></span>
+            Simple websites, cleanups, and useful web tools
           </div>
-          <div class="filter-row">
-            <button class="active" data-filter="all">All</button>
-            <button data-filter="stop">Stops</button>
-            <button data-filter="signal">Signals</button>
-            <button data-filter="review">Review</button>
+
+          <h1>It’s not too late to fix your website.</h1>
+
+          <p class="hero-text">
+            I build clear, practical websites and small web tools for people who need
+            something that works, looks clean, and is easy to use.
+          </p>
+
+          <div class="actions">
+            <a class="button primary" href="#demos">See the demos</a>
+            <a class="button secondary" href="#what-i-build">What I build</a>
           </div>
         </div>
 
-        <div class="map-image-wrap" id="mockMap">
-          <img class="map-image" src="gpsmap.png" alt="Map preview with route and saved field notes" />
+        <aside class="hero-card">
+          <h2>Need something cleaned up fast?</h2>
+          <p>
+            A confusing website can cost people trust before they ever call, book, or buy.
+            The fix does not have to be complicated.
+          </p>
+
+          <div class="checklist">
+            <div class="check">
+              <span>✓</span>
+              <div><strong>Clear pages</strong><br />Easy to read, easy to click, easy to understand.</div>
+            </div>
+
+            <div class="check">
+              <span>✓</span>
+              <div><strong>Mobile-friendly layouts</strong><br />Built for people using phones first.</div>
+            </div>
+
+            <div class="check">
+              <span>✓</span>
+              <div><strong>Small custom tools</strong><br />Forms, dashboards, maps, upload pages, and control panels.</div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="what-i-build">
+        <div class="section-header">
+          <h2>What I build</h2>
+          <p>
+            Practical web work for small businesses, shops, and people who need a simple solution.
+          </p>
+        </div>
+
+        <div class="services">
+          <article class="service">
+            <h3>Business websites</h3>
+            <p>Clean one-page sites with services, pricing, reviews, and a clear way to contact you.</p>
+          </article>
+
+          <article class="service">
+            <h3>Page cleanups</h3>
+            <p>Fix messy layouts, confusing text, weak product pages, and pages that feel hard to trust.</p>
+          </article>
+
+          <article class="service">
+            <h3>Web tools</h3>
+            <p>Simple dashboards, forms, map pages, upload tools, and control panels for daily work.</p>
+          </article>
         </div>
       </section>
 
-      <section class="table-card">
-        <div class="table-heading">
-          <div>
-            <p class="eyebrow">Review queue</p>
-            <h2>Saved field notes</h2>
-          </div>
-          <input id="searchInput" placeholder="Search notes" />
+      <section class="section" id="demos">
+        <div class="section-header">
+          <h2>Demo projects</h2>
+          <p>
+            These are small examples showing the kind of practical work I can build.
+          </p>
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Type</th><th>Location</th><th>Note</th><th>Status</th></tr>
-            </thead>
-            <tbody id="notesTable">
-              <tr><td>Stop sign</td><td>44.8241, -93.2074</td><td>Facing north, possible 4-way</td><td><span class="tag good">Verified</span></td></tr>
-              <tr><td>Traffic light</td><td>44.8192, -93.2110</td><td>Long red during morning route</td><td><span class="tag warn">Watch</span></td></tr>
-              <tr><td>Construction</td><td>44.8301, -93.2190</td><td>Lane closed near school entrance</td><td><span class="tag bad">Review</span></td></tr>
-            </tbody>
-          </table>
+
+        <div class="demo-grid">
+          <article class="demo-card">
+            <div class="number">1</div>
+            <h3>Local Service Website</h3>
+            <p>
+              A clean one-page site for a local service business with services, pricing,
+              reviews, and a quote form.
+            </p>
+            <a class="button" href="01-local-service-site/index.html">Open demo</a>
+          </article>
+
+          <article class="demo-card">
+            <div class="number">2</div>
+            <h3>Product Page Refresh</h3>
+            <p>
+              A cleaner product page focused on trust, clear details, and helping customers
+              feel comfortable before they buy.
+            </p>
+            <a class="button" href="02-shopify-product-cleanup/index.html">Open demo</a>
+          </article>
+
+          <article class="demo-card">
+            <div class="number">3</div>
+            <h3>Simple Map Dashboard</h3>
+            <p>
+              A lightweight dashboard for tracking locations, notes, quick updates, and field work.
+            </p>
+            <a class="button" href="03-ops-map-dashboard/index.html">Open demo</a>
+          </article>
         </div>
       </section>
-    </section>
-  </main>
 
-  <script src="script.js"></script>
+      <section class="section pitch">
+        <div>
+          <h2>Friendly urgency. No pressure. No tech maze.</h2>
+        </div>
+
+        <div class="pitch-box">
+          <p>
+            The goal is simple: make your website easier to read, easier to use,
+            and easier to trust. Whether you need a fresh page, a cleanup, or a small tool
+            that saves time, it is probably not too late to make it better.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      nottoolate.us — simple websites and web fixes
+    </footer>
+  </div>
 </body>
 </html>
