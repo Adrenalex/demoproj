@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ClearCart Product Page Cleanup</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top"><span>CC</span> ClearCart Cleanup</a>
+    <nav>
+      <a href="#audit">Audit</a>
+      <a href="#fixes">Fixes</a>
+      <a href="#checkout">Checkout</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Ecommerce trust repair demo</p>
+        <h1>Turn a sketchy product page into a page people can trust.</h1>
+        <p>This demo shows how a confusing product page can be cleaned up with clear pricing, real policies, honest urgency, readable mobile layout, and a checkout path that does not feel like a trap.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#audit">View cleanup audit</a>
+          <a class="button ghost" href="#checkout">See rebuilt product page</a>
+        </div>
+      </div>
+      <aside class="score-card">
+        <p>Trust score</p>
+        <div class="score"><span id="scoreValue">42</span><small>/100</small></div>
+        <button id="improveBtn" class="button primary" type="button">Run cleanup</button>
+      </aside>
+    </section>
+
+    <section id="audit" class="audit section">
+      <div class="section-heading">
+        <p class="eyebrow">Before cleanup</p>
+        <h2>Common page problems that kill buyer confidence.</h2>
+      </div>
+      <div class="problem-grid">
+        <article>
+          <span class="risk high">High risk</span>
+          <h3>Unclear checkout flow</h3>
+          <p>Buttons do not explain where the customer is going or what happens after clicking.</p>
+        </article>
+        <article>
+          <span class="risk high">High risk</span>
+          <h3>Missing trust basics</h3>
+          <p>No shipping timing, return window, support contact, warranty, or business details.</p>
+        </article>
+        <article>
+          <span class="risk medium">Medium risk</span>
+          <h3>Fake urgency signals</h3>
+          <p>Countdowns, huge discounts, and generic claims make the page feel disposable.</p>
+        </article>
+        <article>
+          <span class="risk medium">Medium risk</span>
+          <h3>Mobile layout friction</h3>
+          <p>The buy button, price, images, and product details are too hard to scan on a phone.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="checkout" class="product-shell section">
+      <div class="product-gallery" aria-label="Product images">
+        <div class="main-product-image">Product Image</div>
+        <div class="thumb-row"><span></span><span></span><span></span></div>
+      </div>
+      <div class="product-info">
+        <p class="eyebrow">Clean rebuilt layout</p>
+        <h2>OrbitClean 2-in-1 Waterproof Shaver</h2>
+        <p class="rating">★★★★★ <strong>4.7</strong> from 318 verified reviews</p>
+        <div class="price-row"><strong>$39.00</strong><span>Was $59.00</span></div>
+        <p class="product-copy">A compact waterproof grooming tool with a clear spec list, visible return policy, and no confusing external checkout jumps.</p>
+
+        <div class="choice-card">
+          <p class="choice-label">Choose color</p>
+          <div class="swatches" role="list" aria-label="Colors">
+            <button class="active" type="button" aria-label="Charcoal"></button>
+            <button type="button" aria-label="Silver"></button>
+            <button type="button" aria-label="Blue"></button>
+          </div>
+        </div>
+
+        <button class="buy-button" type="button">Add to cart — $39.00</button>
+        <div class="policy-strip">
+          <span>Ships in 1–2 business days</span>
+          <span>30-day returns</span>
+          <span>Email support</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="fixes" class="section fixes-section">
+      <div class="section-heading">
+        <p class="eyebrow">What I would sell</p>
+        <h2>Product page cleanup package.</h2>
+      </div>
+      <div class="fix-list">
+        <div><strong>1</strong><span>Rewrite product title, price, CTA, and above-the-fold copy.</span></div>
+        <div><strong>2</strong><span>Add shipping, return, contact, and warranty blocks where buyers expect them.</span></div>
+        <div><strong>3</strong><span>Remove scam-looking urgency, fake badges, clutter, and offsite checkout confusion.</span></div>
+        <div><strong>4</strong><span>Make the mobile version readable, tappable, and focused on one clear action.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Demo project: ecommerce/product page cleanup for gig portfolio use.</footer>
+  <script src="script.js"></script>
+</body>
+</html>

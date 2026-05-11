@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FieldOps Map Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Internal tool demo</p>
+      <h1>FieldOps Map Dashboard</h1>
+    </div>
+    <button class="sync-button" id="syncButton" type="button">Sync demo data</button>
+  </header>
+
+  <main class="layout">
+    <aside class="control-panel" aria-label="Control panel">
+      <section class="panel-card">
+        <h2>Quick add</h2>
+        <div class="button-grid">
+          <button data-type="Stop sign">Stop sign</button>
+          <button data-type="Traffic light">Traffic light</button>
+          <button data-type="Construction">Construction</button>
+          <button data-type="School zone">School zone</button>
+          <button data-type="Delivery note">Delivery note</button>
+          <button data-type="Bad address">Bad address</button>
+        </div>
+      </section>
+
+      <section class="panel-card">
+        <h2>New field note</h2>
+        <form id="noteForm" class="note-form">
+          <label>Type
+            <select name="type">
+              <option>Stop sign</option>
+              <option>Traffic light</option>
+              <option>Construction</option>
+              <option>School zone</option>
+              <option>Delivery note</option>
+              <option>Bad address</option>
+            </select>
+          </label>
+          <label>Location
+            <input name="location" placeholder="44.8241, -93.2074" required />
+          </label>
+          <label>Note
+            <textarea name="note" placeholder="Short note for review"></textarea>
+          </label>
+          <button class="primary" type="submit">Save note</button>
+        </form>
+      </section>
+
+      <section class="panel-card gps-card">
+        <h2>GPS status</h2>
+        <div class="gps-row"><span class="pulse"></span><strong>Recording live</strong></div>
+        <p>Accuracy: 14 ft • Fix age: 3 sec • Network: OK</p>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div class="stats-grid" aria-label="Marker counts">
+        <article><span>Stops</span><strong id="stopCount">8</strong></article>
+        <article><span>Signals</span><strong id="signalCount">5</strong></article>
+        <article><span>Construction</span><strong id="constructionCount">2</strong></article>
+        <article><span>Needs review</span><strong id="reviewCount">3</strong></article>
+      </div>
+
+      <section class="map-card" aria-label="Map preview">
+        <div class="map-toolbar">
+          <div>
+            <p class="eyebrow">Map preview</p>
+            <h2>Today’s route intelligence</h2>
+          </div>
+          <div class="filter-row">
+            <button class="active" data-filter="all">All</button>
+            <button data-filter="stop">Stops</button>
+            <button data-filter="signal">Signals</button>
+            <button data-filter="review">Review</button>
+          </div>
+        </div>
+
+        <div class="mock-map" id="mockMap">
+          <div class="road road-a"></div>
+          <div class="road road-b"></div>
+          <div class="road road-c"></div>
+          <div class="route-line"></div>
+          <button class="pin stop" style="left:18%; top:68%" aria-label="Stop sign marker">S</button>
+          <button class="pin signal" style="left:41%; top:54%" aria-label="Traffic light marker">L</button>
+          <button class="pin review" style="left:59%; top:36%" aria-label="Needs review marker">!</button>
+          <button class="pin stop" style="left:74%; top:61%" aria-label="Stop sign marker">S</button>
+          <button class="pin construction" style="left:32%; top:29%" aria-label="Construction marker">C</button>
+        </div>
+      </section>
+
+      <section class="table-card">
+        <div class="table-heading">
+          <div>
+            <p class="eyebrow">Review queue</p>
+            <h2>Saved field notes</h2>
+          </div>
+          <input id="searchInput" placeholder="Search notes" />
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Type</th><th>Location</th><th>Note</th><th>Status</th></tr>
+            </thead>
+            <tbody id="notesTable">
+              <tr><td>Stop sign</td><td>44.8241, -93.2074</td><td>Facing north, possible 4-way</td><td><span class="tag good">Verified</span></td></tr>
+              <tr><td>Traffic light</td><td>44.8192, -93.2110</td><td>Long red during morning route</td><td><span class="tag warn">Watch</span></td></tr>
+              <tr><td>Construction</td><td>44.8301, -93.2190</td><td>Lane closed near school entrance</td><td><span class="tag bad">Review</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

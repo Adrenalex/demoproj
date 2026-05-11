@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NorthStar Mobile Mechanic</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="NorthStar Mobile Mechanic home">
+      <span class="brand-mark">NS</span>
+      <span>
+        <strong>NorthStar</strong>
+        <small>Mobile Mechanic</small>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#reviews">Reviews</a>
+      <a class="nav-cta" href="#quote">Get a quote</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="hero-copy">
+        <p class="eyebrow">Eagan • Burnsville • Apple Valley • Bloomington</p>
+        <h1>Car problems? We come to your driveway.</h1>
+        <p class="hero-text">Mobile diagnostics, brakes, batteries, alternators, and basic repairs without the tow-truck drama.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#quote">Request a quote</a>
+          <a class="button secondary" href="tel:+15550101444">Call now</a>
+        </div>
+        <div class="trust-row" aria-label="Trust highlights">
+          <span>Licensed & insured</span>
+          <span>Same-day openings</span>
+          <span>Clear quotes first</span>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Today's availability">
+        <p class="card-label">Today’s status</p>
+        <h2>3 same-day slots left</h2>
+        <p>Most diagnostics finished in 45–60 minutes.</p>
+        <div class="status-list">
+          <div><strong>Brake inspection</strong><span>from $49</span></div>
+          <div><strong>Battery install</strong><span>from $35</span></div>
+          <div><strong>No-start diagnosis</strong><span>from $89</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="services" class="section services-section">
+      <div class="section-heading">
+        <p class="eyebrow">Simple service menu</p>
+        <h2>Common jobs we handle on-site</h2>
+      </div>
+      <div class="card-grid">
+        <article class="service-card">
+          <span class="icon">⚡</span>
+          <h3>No-start diagnostics</h3>
+          <p>Battery, starter, alternator, fuse, and sensor checks with plain-English next steps.</p>
+        </article>
+        <article class="service-card">
+          <span class="icon">🛞</span>
+          <h3>Brakes & suspension</h3>
+          <p>Pads, rotors, inspections, strange noises, shaking, and basic safety checks.</p>
+        </article>
+        <article class="service-card">
+          <span class="icon">🔧</span>
+          <h3>Small repairs</h3>
+          <p>Belts, lights, filters, wipers, sensors, and quick repairs that do not need a lift.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="pricing" class="section split-section">
+      <div>
+        <p class="eyebrow">No mystery invoices</p>
+        <h2>Clear pricing before work starts.</h2>
+        <p>Customers approve the quote before parts are ordered or labor begins. Photos and notes are included with each job summary.</p>
+      </div>
+      <div class="pricing-box">
+        <div><span>Diagnostic visit</span><strong>$89</strong></div>
+        <div><span>Brake inspection</span><strong>$49</strong></div>
+        <div><span>Labor rate</span><strong>$95/hr</strong></div>
+      </div>
+    </section>
+
+    <section id="reviews" class="section reviews-section">
+      <div class="section-heading">
+        <p class="eyebrow">Local reviews</p>
+        <h2>Trusted by drivers who needed help fast.</h2>
+      </div>
+      <div class="review-grid">
+        <blockquote>“Showed up on time, explained everything, and saved me a tow.”<cite>— Maya R.</cite></blockquote>
+        <blockquote>“The quote was clear and the brake job was done in my driveway.”<cite>— Thomas J.</cite></blockquote>
+        <blockquote>“Way less stressful than trying to get my car to a shop.”<cite>— Ren S.</cite></blockquote>
+      </div>
+    </section>
+
+    <section id="quote" class="section quote-section">
+      <div>
+        <p class="eyebrow">Fast quote</p>
+        <h2>Tell us what is going on.</h2>
+        <p>Demo form only. In a real build this could send email, save to a database, or create a job card.</p>
+      </div>
+      <form class="quote-form" id="quoteForm">
+        <label>Name<input required name="name" placeholder="Your name" /></label>
+        <label>Vehicle<input required name="vehicle" placeholder="2015 Toyota Camry" /></label>
+        <label>Problem<textarea required name="problem" placeholder="Describe the issue"></textarea></label>
+        <button class="button primary" type="submit">Submit demo quote</button>
+        <p class="form-message" id="formMessage" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Demo project: local service website for gig portfolio use.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
