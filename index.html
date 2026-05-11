@@ -1,4 +1,4 @@
- <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -82,14 +82,26 @@
     <div class="contact-inner">
       <p class="kicker">Get in touch</p>
       <h2>Let&#8217;s talk about your project.</h2>
-      <p class="contact-sub">I work with small businesses, solo operators, and busy people who need something
-      that actually works. No bloated agency process. Just clear work at a fair price.</p>
-      <div class="contact-options">
-        <a class="contact-btn primary-btn" href="mailto:alexjensen@nottoolate.us">Email me &rarr;</a>
-      </div>
-      <br>
-      <p class="contact-pricing">Most projects run <strong>$300&ndash;$800</strong> depending on scope. No agency overhead, no mystery invoices.</p>
-      <p class="contact-note">Usually respond within a business day.</p>
+      <p class="contact-sub">Most projects run <strong>$300&ndash;$800</strong> depending on scope. No agency overhead, no mystery invoices. Usually respond within a business day.</p>
+
+      <form class="contact-form" action="https://formspree.io/f/mdabyqlv" method="POST">
+        <div class="contact-fields">
+          <div class="contact-field">
+            <label for="c-name">Name</label>
+            <input id="c-name" type="text" name="name" placeholder="Your name" required />
+          </div>
+          <div class="contact-field">
+            <label for="c-email">Email</label>
+            <input id="c-email" type="email" name="email" placeholder="you@example.com" required />
+          </div>
+        </div>
+        <div class="contact-field">
+          <label for="c-message">What do you need?</label>
+          <textarea id="c-message" name="message" placeholder="Describe your project or problem in a sentence or two." required></textarea>
+        </div>
+        <button class="contact-submit" type="submit">Send message &rarr;</button>
+        <p class="contact-note">No spam, no mailing list. Just a reply from me.</p>
+      </form>
     </div>
   </section>
 </main>

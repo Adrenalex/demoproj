@@ -152,65 +152,55 @@ td { color: #e5eefb; }
 .tag.warn { background: var(--warn); }
 .tag.bad { background: var(--bad); color: white; }
 
+/* ── Desktop-only notice for mobile ── */
+.mobile-notice { display: none; }
+
 @media (max-width: 960px) {
-  /* Stack sidebar above workspace */
-  .layout {
-    grid-template-columns: 1fr;
-    padding: .75rem;
+  /* Hide the whole dashboard on mobile */
+  .layout { display: none; }
+
+  /* Show the mobile notice instead */
+  .mobile-notice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    gap: 1rem;
   }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .mobile-notice-icon {
+    font-size: 3rem;
+    line-height: 1;
+  }
+  .mobile-notice h2 {
+    font-size: 1.6rem;
+    letter-spacing: -.04em;
+    margin: 0;
+  }
+  .mobile-notice p {
+    color: var(--muted);
+    max-width: 320px;
+    margin: 0;
+    font-size: .95rem;
+    line-height: 1.6;
+  }
+  .mobile-notice .notice-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    background: rgba(56,189,248,.12);
+    border: 1px solid rgba(56,189,248,.25);
+    color: var(--accent);
+    font-size: .82rem;
+    font-weight: 850;
+    padding: .4rem .85rem;
+    border-radius: 999px;
+  }
 
-  /* Map goes full width, decent height */
-  #map { height: 400px; }
-
-  /* GPS card hidden on tablet — decorative only */
-  .gps-card { display: none; }
-
+  /* Pitch section still shows on mobile */
   .pitch-inner { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 600px) {
-  /* Header */
-  .app-header { align-items: flex-start; flex-direction: column; gap: .5rem; }
-  .header-right { width: 100%; justify-content: space-between; }
-  .sync-button { flex: 1; }
-
-  /* Full single-column layout */
-  .layout { padding: .5rem; gap: .65rem; }
-
-  /* Stats 2x2 */
-  .stats-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: .5rem;
-  }
-  .stats-grid strong { font-size: 1.7rem; }
-
-  /* Control panel: quick-add buttons full width 2-col */
-  .button-grid { grid-template-columns: 1fr 1fr; gap: .5rem; }
-  .button-grid button { min-height: 44px; font-size: .85rem; }
-
-  /* Hide the two-step pending hint on mobile — buttons pre-fill form instead */
-  .pending-hint { display: none !important; }
-  .quick-hint { display: none; }
-
-  /* Map full width, tall enough to be useful */
-  #map { height: 420px; border-radius: 14px; }
-
-  /* Map toolbar stacks */
-  .map-toolbar { flex-direction: column; align-items: stretch; gap: .5rem; }
-  .filter-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: .4rem; }
-  .filter-row button { min-height: 38px; font-size: .78rem; padding: .4rem .3rem; border-radius: 10px; }
-
-  /* Table heading stacks */
-  .table-heading { flex-direction: column; align-items: stretch; gap: .5rem; }
-  #searchInput { width: 100%; }
-
-  /* Note form compact */
-  .note-form { gap: .6rem; }
-  textarea { min-height: 70px; }
-
-  /* Pitch section */
-  .pitch-section { padding: .5rem .5rem 1.5rem; }
+  .pitch-section { padding: .75rem .75rem 2rem; }
 }
 
 .header-right { display:flex; align-items:center; gap:.75rem; }
